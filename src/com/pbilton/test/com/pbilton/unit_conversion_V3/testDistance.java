@@ -19,7 +19,6 @@ public class testDistance {
         Assertions.assertEquals(1609.344D,Distance.Mile.getRatio());
     }
 
-
     @Test
     public void testBaseUnitCM(){
     var baseUnit = Distance.Create(10,Centimeter);
@@ -57,10 +56,16 @@ public class testDistance {
     }
 
     @Test
-    public void testConvertTo(){
+    public void testConvert_MM_M(){
         var baseUnit = Distance.Create(1000,Millimeter);
-        baseUnit.ConvertTo(Meter);
-        double result = baseUnit.getTargetDistance();
-        Assertions.assertEquals(1.0,result);
+        baseUnit.ConvertTo(Meter) ;
+        Assertions.assertEquals(1.0,baseUnit.getTargetDistance());
+    }
+
+    @Test
+    public void testConvert_CM_KM(){
+        var baseUnit = Distance.Create(1000,Centimeter);
+        baseUnit.ConvertTo(Kilometer);
+        Assertions.assertEquals(0.01,baseUnit.getTargetDistance());
     }
 }
