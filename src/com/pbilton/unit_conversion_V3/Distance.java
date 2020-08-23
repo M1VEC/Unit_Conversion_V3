@@ -14,7 +14,7 @@ public class Distance {
     private double ValueInMeters;
     private double Value;
 
-    public static Distance Millimeter = new Distance(1D, 0.0001D, "mm", "Millimeter");
+    public static Distance Millimeter = new Distance(1D, 0.001D, "mm", "Millimeter");
     public static Distance Centimeter = new Distance(1D, 0.01D, "cm", "Centimeter");
     public static Distance Inch = new Distance(1D, 0.0254D, "i", "Inch");
     public static Distance Foot = new Distance(1D, 12D * Inch.Ratio, "ft", "Foot");
@@ -22,6 +22,7 @@ public class Distance {
     public static Distance Meter = new Distance(1D, 1D, "m", "Meter");
     public static Distance Kilometer = new Distance(1D, 1000D, "km", "Kilometer");
     public static Distance Mile = new Distance(1D, 1609.344D, "mi", "Mile");
+    private double targetDistance;
 
     public static Distance Create(double value, Distance unit) {
         return new Distance(value, unit.Ratio, unit.ShortName, unit.LongName);
@@ -41,24 +42,31 @@ public class Distance {
 
     public String getShortName() {
         return this.ShortName;
+
     }
 
     public String getLongName() {
         return this.LongName;
+
     }
 
     public double getValueInMeters() {
         return this.ValueInMeters;
     }
 
+    public double getTargetDistance(){
+        return this.targetDistance;
+    }
+
     public Distance ConvertTo(Distance target) {
-        var targetDistance = ValueInMeters / target.Ratio;
+        targetDistance = ValueInMeters / target.Ratio;
+        System.out.println(targetDistance);
         return Create(targetDistance, target);
     }
 
     @Override
     public String toString(){
-        return String.valueOf(ValueInMeters);
+        return String.valueOf(targetDistance);
     }
 
     public static Distance[] AllUnits = new Distance[]

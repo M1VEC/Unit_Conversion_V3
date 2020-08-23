@@ -9,7 +9,7 @@ public class testDistance {
 
     @Test
     public void testRatios(){
-        Assertions.assertEquals(0.0001D,Distance.Millimeter.getRatio());
+        Assertions.assertEquals(0.001D,Distance.Millimeter.getRatio());
         Assertions.assertEquals(0.01D, Centimeter.getRatio());
         Assertions.assertEquals(0.0254D,Distance.Inch.getRatio());
         Assertions.assertEquals(0.30479999999999996D,Distance.Foot.getRatio());
@@ -58,10 +58,9 @@ public class testDistance {
 
     @Test
     public void testConvertTo(){
-        var baseUnit = Distance.Create(10,Millimeter);
-//        var target = Distance.Create(1,Centimeter);
-        var convert = baseUnit.ConvertTo(Centimeter);
-        var result = 0.01;
-        Assertions.assertEquals(result,convert);
+        var baseUnit = Distance.Create(1000,Millimeter);
+        baseUnit.ConvertTo(Meter);
+        double result = baseUnit.getTargetDistance();
+        Assertions.assertEquals(1.0,result);
     }
 }
