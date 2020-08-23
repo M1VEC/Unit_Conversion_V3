@@ -56,6 +56,11 @@ public class Distance {
         return Create(targetDistance, target);
     }
 
+    @Override
+    public String toString(){
+        return String.valueOf(ValueInMeters);
+    }
+
     public static Distance[] AllUnits = new Distance[]
             {
                     Millimeter,

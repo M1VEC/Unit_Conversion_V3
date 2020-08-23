@@ -7,13 +7,6 @@ import static com.pbilton.unit_conversion_V3.Distance.*;
 
 public class testDistance {
 
-    private Distance targetDistance;
-
-//    @Override
-//    public String toString(){
-//        return targetDistance;
-//    }
-
     @Test
     public void testRatios(){
         Assertions.assertEquals(0.0001D,Distance.Millimeter.getRatio());
@@ -62,4 +55,13 @@ public class testDistance {
         Assertions.assertEquals(1000D,targetUnit.getRatio());
         Assertions.assertEquals(2000D,targetUnit.getValueInMeters());
     }
- }
+
+    @Test
+    public void testConvertTo(){
+        var baseUnit = Distance.Create(10,Millimeter);
+//        var target = Distance.Create(1,Centimeter);
+        var convert = baseUnit.ConvertTo(Centimeter);
+        var result = 0.01;
+        Assertions.assertEquals(result,convert);
+    }
+}
