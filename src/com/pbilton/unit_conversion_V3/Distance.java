@@ -1,12 +1,5 @@
 package com.pbilton.unit_conversion_V3;
 
-import java.lang.reflect.Array;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Distance {
 
     private String ShortName;
@@ -72,18 +65,45 @@ public class Distance {
             Mile
     };
 
-    public static Distance TryParse(String input) {
+    public static Distance tryParse(String input)  {
         int distanceValue = Integer.parseInt(input.replaceAll("[^0-9]", ""));
         String unitValue = input.replaceAll("[^a-z,A-Z]", "");
 
+        boolean contains = false;
         Distance unit = null;
+
         for (Distance AllUnit : AllUnits) {
             if (unitValue.equalsIgnoreCase(AllUnit.LongName)|| unitValue.equalsIgnoreCase(AllUnit.ShortName)){
                 unit = AllUnit;
+                contains = true;
                 break;
             }
         }
 
-        return Create(distanceValue,unit);
+        if (contains == true)
+            return Create(distanceValue, unit);
+        else
+            return null;
+    }
+
+    public Distance tryParseUnit(String input){
+        String unitValue = input.replaceAll("[^a-z,A-Z]", "");
+
+        boolean contains = false;
+        Distance unit = null;
+
+        for (Distance AllUnit : AllUnits) {
+            if (unitValue.equalsIgnoreCase(AllUnit.LongName)|| unitValue.equalsIgnoreCase(AllUnit.ShortName)){
+                unit = AllUnit;
+                contains = true;
+                break;
+            }
+        }
+
+        if (contains == true)
+            return ConvertTo(unit);
+        else
+            return null;
+
     }
 }

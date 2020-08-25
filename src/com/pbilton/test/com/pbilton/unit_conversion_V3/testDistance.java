@@ -71,9 +71,29 @@ public class testDistance {
     }
 
     @Test
-    public void testParse_CM_Kilometer(){
-        var baseUnit = Distance.TryParse("1000 centimeter");
-        var km = baseUnit.ConvertTo(Kilometer);
-        Assertions.assertEquals(0.01,km.getValue());
+    public void test_tryParse_CM_Meter(){
+        var baseUnit = Distance.tryParse("1000 centimeter");
+        var meter = baseUnit.tryParseUnit("meter");
+        Assertions.assertEquals(10,meter.getValue());
+    }
+
+    @Test
+    public void test_tryParse_MM_Mile(){
+        var baseUnit = Distance.tryParse("25000 mm");
+        var mile = baseUnit.tryParseUnit("Mile");
+        Assertions.assertEquals(0.01553427980593335,mile.getValue());
+    }
+
+    @Test
+    public void fail_tryParse_Test() {
+        var baseUnit = Distance.tryParse("25000 mn");
+        Assertions.assertNull(null,"Invalid unit input");
+    }
+
+    @Test
+    public void fail_tryParseUnit_CM_Yard(){
+        var baseUnit = Distance.tryParse("5 cm");
+        var mile = baseUnit.tryParseUnit("yards");
+        Assertions.assertNull(null,"Invalid unit input");
     }
 }
