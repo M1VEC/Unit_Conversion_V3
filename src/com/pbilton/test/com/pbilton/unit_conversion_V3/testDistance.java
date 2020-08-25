@@ -79,7 +79,7 @@ public class testDistance {
 
     @Test
     public void test_tryParse_MM_Mile(){
-        var baseUnit = Distance.tryParse("25000 mm");
+        var baseUnit = Distance.tryParse("25000mm");
         var mile = baseUnit.tryParseUnit("Mile");
         Assertions.assertEquals(0.01553427980593335,mile.getValue());
     }

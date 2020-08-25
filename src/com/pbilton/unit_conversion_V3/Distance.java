@@ -104,6 +104,5 @@ public class Distance {
             return ConvertTo(unit);
         else
             return null;
-
     }
 }
