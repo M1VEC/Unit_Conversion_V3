@@ -1,6 +1,9 @@
 package com.pbilton.unit_conversion_V3;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,7 +14,6 @@ public class Distance {
     private double Ratio;
     private double ValueInMeters;
     private double Value;
-    private double targetDistance;
 
     public static Distance Millimeter = new Distance(1D, 0.001D, "mm", "Millimeter");
     public static Distance Centimeter = new Distance(1D, 0.01D, "cm", "Centimeter");
@@ -35,50 +37,53 @@ public class Distance {
     }
 
     public Distance ConvertTo(Distance target) {
-        targetDistance = ValueInMeters / target.Ratio;
+        var targetDistance = ValueInMeters / target.Ratio;
         return Create(targetDistance, target);
     }
 
-    public double getRatio() { return this.Ratio; }
+    public double getRatio() {
+        return this.Ratio;
+    }
 
-    public String getShortName() { return this.ShortName; }
+    public String getShortName() {
+        return this.ShortName;
+    }
 
-    public String getLongName() { return this.LongName; }
+    public String getLongName() {
+        return this.LongName;
+    }
 
-    public double getValueInMeters() { return this.ValueInMeters; }
+    public double getValueInMeters() {
+        return this.ValueInMeters;
+    }
 
-    public double getTargetDistance(){ return this.targetDistance; }
+    public double getValue() {
+        return this.Value;
+    }
 
-//    @Override
-//    public String toString(){
-//        return String.valueOf(targetDistance);
-//    }
+    public static Distance[] AllUnits = new Distance[]{
+            Millimeter,
+            Centimeter,
+            Inch,
+            Foot,
+            Yard,
+            Meter,
+            Kilometer,
+            Mile
+    };
 
-    public static Distance[] AllUnits = new Distance[] {
-                    Millimeter,
-                    Centimeter,
-                    Inch,
-                    Foot,
-                    Yard,
-                    Meter,
-                    Kilometer,
-                    Mile
-            };
+    public static Distance TryParse(String input) {
+        int distanceValue = Integer.parseInt(input.replaceAll("[^0-9]", ""));
+        String unitValue = input.replaceAll("[^a-z,A-Z]", "");
 
+        Distance unit = null;
+        for (Distance AllUnit : AllUnits) {
+            if (unitValue.equalsIgnoreCase(AllUnit.LongName)|| unitValue.equalsIgnoreCase(AllUnit.ShortName)){
+                unit = AllUnit;
+                break;
+            }
+        }
+
+        return Create(distanceValue,unit);
+    }
 }
-
-//
-//    public static boolean TryParse(String input){
-//        String pattern = "^(?<distance>[+-]?(([1-9][0-9]*)?[0-9](\\.[0-9]*)?|\\.[0-9]+))(\\s*)$";
-//        Pattern regex = Pattern.compile(pattern);
-//
-//        boolean doublePart = Pattern.matches("km",input);
-//        var unitPart = Pattern.matches("[^a-zA-Z]",input);
-//        var temp = pattern.matches(input);
-//
-//        boolean unit = doublePart;
-//
-//        distance = Create(value, unit);
-//        return temp;
-//
-//    }

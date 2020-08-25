@@ -58,14 +58,22 @@ public class testDistance {
     @Test
     public void testConvert_MM_M(){
         var baseUnit = Distance.Create(1000,Millimeter);
-        baseUnit.ConvertTo(Meter) ;
-        Assertions.assertEquals(1.0,baseUnit.getTargetDistance());
+        var m = baseUnit.ConvertTo(Meter) ;
+        Assertions.assertEquals(1.0,m.getValue());
     }
 
     @Test
     public void testConvert_CM_KM(){
         var baseUnit = Distance.Create(1000,Centimeter);
-        baseUnit.ConvertTo(Kilometer);
-        Assertions.assertEquals(0.01,baseUnit.getTargetDistance());
+        var km = baseUnit.ConvertTo(Kilometer);
+        Assertions.assertEquals(baseUnit.getValueInMeters(),km.getValueInMeters());
+        Assertions.assertEquals(0.01,km.getValue());
+    }
+
+    @Test
+    public void testParse_CM_Kilometer(){
+        var baseUnit = Distance.TryParse("1000 centimeter");
+        var km = baseUnit.ConvertTo(Kilometer);
+        Assertions.assertEquals(0.01,km.getValue());
     }
 }
