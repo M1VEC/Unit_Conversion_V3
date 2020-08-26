@@ -34,4 +34,30 @@ public class Time {
     public double getRatio(){
         return this.Ratio;
     }
+
+    public String getShortName() {
+        return this.ShortName;
+    }
+
+    public String getLongName() {
+        return this.LongName;
+    }
+
+    public double getValueInSeconds() {
+        return this.ValueInSeconds;
+    }
+
+    public double getValue() {
+        return this.Value;
+    }
+
+    public static Time AllUnits[] = new Time[]{
+            Millisecond,
+            Second,
+            Minute,
+            Hour,
+            Day,
+            Year,
+    };
+
 }
