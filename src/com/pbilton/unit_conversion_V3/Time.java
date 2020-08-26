@@ -1,14 +1,15 @@
 package com.pbilton.unit_conversion_V3;
 
 public class Time {
+
     private String ShortName;
     private String LongName;
     private double Ratio;
     private double ValueInSeconds;
     private double Value;
 
-    public static Time Millisecond = new Time(1D, 0.001D,"ms","Milliseconds");
-    public static Time Second = new Time(1D,1D,"s","Seconds");
+    public static Time Millisecond = new Time(1D, 0.001D,"ms","Millisecond");
+    public static Time Second = new Time(1D,1D,"s","Second");
     public static Time Minute = new Time(1D, 60D, "m", "Minute");
     public static Time Hour = new Time(1D,60D* Minute.Ratio,"hr","Hour");
     public static Time Day = new Time(1D,24D* Hour.Ratio,"d","Day");
@@ -59,7 +60,7 @@ public class Time {
             Day,
             Year,
     };
-    
+
     public static Time tryParse(String input)  {
         int timeValue = Integer.parseInt(input.replaceAll("[^0-9]", ""));
         String unitValue = input.replaceAll("[^a-z,A-Z]", "");
