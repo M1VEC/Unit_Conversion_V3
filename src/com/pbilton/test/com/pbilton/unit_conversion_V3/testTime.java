@@ -40,4 +40,18 @@ public class testTime {
         Assertions.assertEquals(baseUnit.getValueInSeconds(),day.getValueInSeconds());
         Assertions.assertEquals(2D,day.getValue());
     }
+
+    @Test
+    public void test_tryParse_Min_Hour(){
+        var baseUnit = Time.tryParse("180m");
+        var hour = baseUnit.tryParseUnit("hour");
+        Assertions.assertEquals(3D,hour.getValue());
+    }
+
+    @Test
+    public void fail_tryParse_Test() {
+        var baseUnit = Time.tryParse("36000 secs");
+        Assertions.assertNull(null,"Invalid unit input");
+    }
+
 }

@@ -59,5 +59,45 @@ public class Time {
             Day,
             Year,
     };
+    
+    public static Time tryParse(String input)  {
+        int timeValue = Integer.parseInt(input.replaceAll("[^0-9]", ""));
+        String unitValue = input.replaceAll("[^a-z,A-Z]", "");
 
+        boolean contains = false;
+        Time unit = null;
+
+        for (Time AllUnit : AllUnits) {
+            if (unitValue.equalsIgnoreCase(AllUnit.LongName)|| unitValue.equalsIgnoreCase(AllUnit.ShortName)){
+                unit = AllUnit;
+                contains = true;
+                break;
+            }
+        }
+
+        if (contains == true)
+            return Create(timeValue, unit);
+        else
+            return null;
+    }
+
+    public Time tryParseUnit(String input){
+        String unitValue = input.replaceAll("[^a-z,A-Z]", "");
+
+        boolean contains = false;
+        Time unit = null;
+
+        for (Time AllUnit : AllUnits) {
+            if (unitValue.equalsIgnoreCase(AllUnit.LongName)|| unitValue.equalsIgnoreCase(AllUnit.ShortName)){
+                unit = AllUnit;
+                contains = true;
+                break;
+            }
+        }
+
+        if (contains == true)
+            return convertTo(unit);
+        else
+            return null;
+    }
 }
