@@ -31,7 +31,7 @@ public class testMass {
 
     @Test
     public void fail_tryParse_Test() {
-        var baseUnit = Time.tryParse("450 tons");
+        var baseUnit = Mass.tryParse("450 tons");
         Assertions.assertNull(null,"Invalid unit input");
     }
 }
