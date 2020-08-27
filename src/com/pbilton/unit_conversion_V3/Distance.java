@@ -34,6 +34,9 @@ public class Distance {
         return Create(targetDistance, target);
     }
 
+    public Distance Unit = new Distance(1D, Ratio, ShortName, LongName);
+
+
     public double getRatio() {
         return this.Ratio;
     }

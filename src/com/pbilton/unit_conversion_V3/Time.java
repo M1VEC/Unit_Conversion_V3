@@ -15,7 +15,7 @@ public class Time {
     public static Time Day = new Time(1D,24D* Hour.Ratio,"d","Day");
     public static Time Year = new Time(1D,365D* Day.Ratio,"y","Year");
 
-    public static Time Create(double value, Time  unit){
+    public static Time Create(double value, Time unit){
         return new Time(value, unit.Ratio, unit.ShortName, unit.LongName);
     }
 
@@ -31,6 +31,8 @@ public class Time {
         var targetTime = ValueInSeconds / target.Ratio;
         return Create(targetTime, target);
     }
+
+    public Time Unit = new Time(1D, Ratio, ShortName, LongName);
 
     public double getRatio(){
         return this.Ratio;
