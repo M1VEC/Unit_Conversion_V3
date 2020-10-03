@@ -32,7 +32,7 @@ public class Time {
         return Create(targetTime, target);
     }
 
-    public Time Unit = new Time(1D, Ratio, ShortName, LongName);
+//    public Time Unit = new Time(1D, Ratio, ShortName, LongName);
 
     public double getRatio(){
         return this.Ratio;

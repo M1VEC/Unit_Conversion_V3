@@ -10,12 +10,12 @@ public class testDistance {
     @Test
     public void testRatios(){
         Assertions.assertEquals(0.001D,Distance.Millimeter.getRatio());
-        Assertions.assertEquals(0.01D, Centimeter.getRatio());
+        Assertions.assertEquals(0.01D, Distance.Centimeter.getRatio());
         Assertions.assertEquals(0.0254D,Distance.Inch.getRatio());
         Assertions.assertEquals(0.30479999999999996D,Distance.Foot.getRatio());
         Assertions.assertEquals(0.9143999999999999D,Distance.Yard.getRatio());
         Assertions.assertEquals(1D,Distance.Meter.getRatio());
-        Assertions.assertEquals(1000D, Kilometer.getRatio());
+        Assertions.assertEquals(1000D, Distance.Kilometer.getRatio());
         Assertions.assertEquals(1609.344D,Distance.Mile.getRatio());
     }
 
